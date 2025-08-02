@@ -1,0 +1,305 @@
+/* Car Racing Game Styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #87CEEB, #98FB98);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    background: #333;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.road {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #444;
+    background-image: 
+        linear-gradient(90deg, #fff 48%, transparent 48%, transparent 52%, #fff 52%),
+        repeating-linear-gradient(0deg, #666 0px, #666 20px, #555 20px, #555 40px);
+}
+
+.road-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 40px;
+    background: #fff;
+    animation: moveDown 0.5s linear infinite;
+}
+
+@keyframes moveDown {
+    0% { top: -40px; }
+    100% { top: 100%; }
+}
+
+.player-car {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.1s ease;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.player-car::before {
+    content: '🏎️';
+    display: block;
+    transform: rotate(0deg); /* Facing forward/up naturally */
+}
+
+.enemy-car {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rockFall 2s linear infinite;
+    z-index: 5;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.enemy-car::before {
+    content: '🪨';
+    display: block;
+    transform: rotate(0deg);
+    animation: rockSpin 1s linear infinite;
+}
+
+@keyframes rockFall {
+    0% { top: -100px; }
+    100% { top: 100%; }
+}
+
+@keyframes rockSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 100;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.ui div {
+    margin-bottom: 5px;
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    z-index: 200;
+    border: 2px solid #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+.game-over h2 {
+    margin-top: 0;
+    color: #ff4444;
+    font-size: 24px;
+}
+
+.restart-btn {
+    background: linear-gradient(45deg, #ff4444, #ff6666);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.restart-btn:hover {
+    background: linear-gradient(45deg, #ff6666, #ff8888);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.restart-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.instructions {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 12px;
+    background: rgba(0,0,0,0.5);
+    padding: 8px 12px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.9);
+    color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    z-index: 300;
+    border: 2px solid #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+.start-screen h1 {
+    color: #ff4444;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.start-btn {
+    background: linear-gradient(45deg, #4444ff, #6666ff);
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.start-btn:hover {
+    background: linear-gradient(45deg, #6666ff, #8888ff);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.controls-info {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* Start and Finish Lines */
+.start-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        90deg,
+        #fff 0px, #fff 10px,
+        #000 10px, #000 20px
+    );
+    z-index: 1;
+    border-top: 2px solid #ffff00;
+}
+
+.finish-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        90deg,
+        #fff 0px, #fff 10px,
+        #000 10px, #000 20px
+    );
+    z-index: 1;
+    border-bottom: 2px solid #ffff00;
+}
+
+.lane-markers {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.lane-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px, transparent 20px,
+        #ffff00 20px, #ffff00 40px
+    );
+}
+
+.lane-marker.left {
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+.lane-marker.right {
+    left: 75%;
+    transform: translateX(-50%);
+}
+
+/* Responsive design for mobile */
+@media (max-width: 480px) {
+    .game-container {
+        width: 90vw;
+        height: 70vh;
+        max-width: 400px;
+    }
+    
+    .ui {
+        font-size: 16px;
+    }
+    
+    .instructions {
+        font-size: 10px;
+        bottom: 10px;
+        left: 10px;
+    }
+}
